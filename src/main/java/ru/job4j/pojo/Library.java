@@ -26,10 +26,10 @@ public class Library {
             Book bk = books[index];
             System.out.println(bk.getName() + " - " + bk.getPages());
         }
-        System.out.println("Вывод на консоль книги Cnean code: ");
+        System.out.println("Вывод на консоль книги Clean code: ");
         for (int index = 0; index < books.length; index++) {
             Book bk = books[index];
-            if (bk.getName().equals("Clean code")) {
+            if ("Clean code".equals(bk.getName())) {
                 System.out.println(bk.getName() + " - " + bk.getPages());
             }
         }
