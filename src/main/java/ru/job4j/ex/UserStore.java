@@ -3,24 +3,24 @@ package ru.job4j.ex;
 public class UserStore {
 
     public static User findUser(User[] users, String login) throws UserNotFoundException {
-        User finedUser = null;
-        for (User user : users) {
-            if (login.equals(user.getUsername())) {
-                finedUser = user;
+        User fined = null;
+        for (int index = 0; index < users.length; index++) {
+            if (login.equals(users[index].getUsername())) {
+                fined = users[index];
                 break;
-            } else {
-                throw new UserNotFoundException("Пользователь не найден");
             }
         }
-        return finedUser;
+        if (fined == null) {
+            throw new UserNotFoundException("Пользователь не найден");
+        }
+        return fined;
     }
 
     public static boolean validate(User user) throws UserInvalidException {
         if (user.isValid() && user.getUsername().length() > 3) {
             return true;
-        } else {
-            throw new UserInvalidException("Пользователь не валидный");
         }
+            throw new UserInvalidException("Пользователь не валидный");
     }
 
     public static void main(String[] args) {
@@ -32,8 +32,10 @@ public class UserStore {
             if (validate(user)) {
                 System.out.println("This user has an access");
             }
-        } catch (UserNotFoundException exc) {
-            exc.printStackTrace();
+        } catch (UserInvalidException uie) {
+            uie.printStackTrace();
+        } catch (UserNotFoundException unf) {
+            unf.printStackTrace();
         }
     }
 }
