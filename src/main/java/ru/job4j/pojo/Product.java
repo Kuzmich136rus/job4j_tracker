@@ -38,4 +38,9 @@ public class Product {
     public void setCount(int count) {
         this.count = count;
     }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, count);
+    }
 }
