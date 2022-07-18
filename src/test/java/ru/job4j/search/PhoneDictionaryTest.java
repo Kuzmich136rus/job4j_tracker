@@ -19,7 +19,7 @@ public class PhoneDictionaryTest {
     }
 
     @Test
-    public void whenNotFined() {
+    public void whenEqualsNotFined() {
         PhoneDictionary phone = new PhoneDictionary();
         phone.add(
                 new Person("Nikita", "Shcherbakov", "1153051", "Voronezh")
