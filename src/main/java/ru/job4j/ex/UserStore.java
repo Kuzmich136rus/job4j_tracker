@@ -4,9 +4,9 @@ public class UserStore {
 
     public static User findUser(User[] users, String login) throws UserNotFoundException {
         User fined = null;
-        for (int index = 0; index < users.length; index++) {
-            if (login.equals(users[index].getUsername())) {
-                fined = users[index];
+        for (User user : users) {
+            if (login.equals(user.getUsername())) {
+                fined = user;
                 break;
             }
         }
@@ -17,10 +17,10 @@ public class UserStore {
     }
 
     public static boolean validate(User user) throws UserInvalidException {
-        if (user.isValid() && user.getUsername().length() > 3) {
-            return true;
-        }
+        if (!user.isValid() || user.getUsername().length() < 3) {
             throw new UserInvalidException("Пользователь не валидный");
+        }
+        return true;
     }
 
     public static void main(String[] args) {
