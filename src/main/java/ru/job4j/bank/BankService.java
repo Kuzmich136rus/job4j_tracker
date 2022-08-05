@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Класс описывает банковский сервис.
  * @author Nikita Shcherbakov
- * @version 1.0
+ * @version 1.1
  */
 public class BankService {
     /**
@@ -43,14 +43,11 @@ public class BankService {
      * @return найденного пользователя типа User или null, если пользователь не найден
      */
     public User findByPassport(String passport) {
-        User finedUser = null;
-        for (User user : users.keySet()) {
-            if (user.getPassport().equals(passport)) {
-                finedUser = user;
-                break;
-            }
-        }
-        return finedUser;
+        return users.keySet()
+                .stream()
+                .filter(s -> s.getPassport().equals(passport))
+                .findFirst()
+                .orElse(null);
     }
 
     /**
@@ -62,17 +59,15 @@ public class BankService {
      * @return аккаунт или null, если счет по реквизитам не найден
      */
     public Account findByRequisite(String passport, String requisite) {
-        Account account = null;
-        User finedUser = findByPassport(passport);
-        if (finedUser != null) {
-           for (Account finedAccount : users.get(finedUser)) {
-               if (finedAccount.getRequisite().equals(requisite)) {
-                   account = finedAccount;
-                   break;
-               }
-            }
+        User a = findByPassport(passport);
+        if (a != null) {
+            return users.get(a)
+                    .stream()
+                    .filter(s -> s.getRequisite().equals(requisite))
+                    .findFirst()
+                    .orElse(null);
         }
-        return account;
+        return  null;
     }
 
     /**
