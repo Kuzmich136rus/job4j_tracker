@@ -2,9 +2,9 @@ package ru.job4j.stream;
 
 import java.util.Comparator;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import java.util.List;
 
 public class Analyze {
     public static double averageScore(Stream<Pupil> stream) {
