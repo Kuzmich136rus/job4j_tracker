@@ -51,13 +51,4 @@ public class UserTest {
                 );
         assertThat(rsl, greaterThan(0));
     }
-
-    @Test
-    public void whenComparePetrVSPetrWithDifferentAge() {
-        int rsl = new User("Petr", 31)
-                .compareTo(
-                        new User("Petr", 32)
-                );
-        assertThat(rsl, lessThan(0));
-    }
 }
